@@ -1,0 +1,22 @@
+.Hero {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.Hero h1 {
+  display: inline-block;
+  float: left;
+  font-size: larger;
+  font-weight: bolder;
+}
+.Titlebar {
+  display: inline-block;
+  float: right;
+  font-size: large;
+  font-weight: bolder;
+}
+.SearchTitle {
+  color: green;
+}
