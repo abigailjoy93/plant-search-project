@@ -53,6 +53,7 @@ function getSpecies_Test() {
 //    page = 1,
 //    previousResponse = []
 
+// Function returns ALL items that match the criteria from the user.
 function getSpecies_paginated_fetch(
     url = APIBaseGetSpeciesUrl, 
     page = 1
