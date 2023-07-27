@@ -13,6 +13,7 @@ APIBaseGetSpeciesUrl = APIBaseGetSpeciesUrl + "key=" + APIKey;
 
 // function returns 1 page of plants
 // ToDo: Add picture from link of thumbnail
+// ToDO: test
 function getSpecies_Test() {
     fetch('https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631&page=3',                 // *** No `assignment =` on this line
         {
