@@ -3,39 +3,274 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Plant Search Project</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="./Assests/css/style.css" />
+    <link rel="stylesheet" href="./Assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lunasima:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-    <body>
+  <body>
     <section class="hero">
-        <div class="container">
-          <h1 class="title" hero-title>
-            SandBox
-          </h1>
-          <p class="subtitle" hero-subtitle>
-            App currently lists plants from the API call.     
-          </p>
+      <div class="container">
+        <h1 class="title" hero-title>SandBox</h1>
+        <p class="subtitle" hero-subtitle>
+          App currently lists plants from the API call.
+        </p>
+      </div>
+    </section>
+
+    <section class="columns">
+      <div class="column is-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-title is-centered custom-font">
+              My Plants
+            </div>
+          </div>
+          <div class="card-content">
+            <p>
+              <a
+                href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
+                >Plant 1</a
+              >
+            </p>
+            <p>
+              <a
+                href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
+                >Plant 2</a
+              >
+            </p>
+            <p>
+              <a
+                href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
+                >Plant 3</a
+              >
+            </p>
+          </div>
         </div>
-      </section>
-    
-      <section class="section">
+
+        <div class="buttons is-centered">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Hardiness Zone</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Zone 1</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Zone 2</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Zone 3</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons is-centered">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Indoor/Outdoor</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Indoor</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Outdoor</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons is-centered is-half">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Sunlight</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Full sun</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Part sun/Part shade</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Part shade</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Filtered shade</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons is-centered">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Water</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Average</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Frequent</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons is-centered">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Cycle</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Perennial</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>Annual</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons is-centered">
+          <div class="dropdown">
+            <div class="dropdown-trigger">
+              <button
+                class="button is-outlined is-rounded custom-width custom-font"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu5"
+              >
+                <span>Edible</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+              <div class="dropdown-content custom-width custom-font">
+                <div class="dropdown-item custom-font">
+                  <p>Yes</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>No</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <textarea
+            class="textarea"
+            placeholder="Plant name"
+            rows="1"
+          ></textarea>
+        </div>
+        <br />
+        <div class="buttons is-centered">
+          <button class="button is-outlined search-button">Search</button>
+        </div>
+      </div>
+
+      <section class="column">
         <div class="container">
-          <table id="tbl">
+          <table class="table" id="tbl">
             <thead id="thead">
+              <tr>
+                <th></th>
+                <th>Scientific Name</th>
+                <th>Common Name</th>
+                <th>Watering Preferences</th>
+                <th>Sunlight Preferences</th>
+                <th>Add to My Plant</th>
+              </tr>
             </thead>
-            <tbody id="tbody">
-            </tbody>
+            <tbody id="tbody"></tbody>
           </table>
         </div>
-    
-  
-     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-     <script defer type="text/javascript" src="assets/js/perenual.js" ></script>
-     <script defer type="text/javascript" src="assets/js/script.js" ></script>
+      </section>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script defer type="text/javascript" src="assets/js/bulma.js"></script>
+    <script
+      defer
+      type="text/javascript"
+      src="assets/js/perenualAPI.js"
+    ></script>
+    <script defer type="text/javascript" src="assets/js/script.js"></script>
   </body>
 </html>
