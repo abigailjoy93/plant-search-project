@@ -1,0 +1,52 @@
+:root {
+  --main: darkseagreen;
+  --dark: darkslategray;
+  --light: #dfecdf;
+  --font: #70a970;
+}
+.hero {
+  width: 100% vw;
+  margin: 15px;
+  padding: 15px;
+  text-align: center;
+  background-color: var(--main);
+}
+.column {
+  margin: 25px;
+  border: 3.5px solid var(--dark);
+  border-radius: 15px;
+  background-color: var(--main);
+  font-family: "Lunasima";
+}
+.card {
+  margin: 15px;
+  margin-bottom: 30px;
+  border: 2px solid var(--dark);
+  font-family: "Lunasima";
+}
+.custom-font {
+  color: var(--dark);
+  font-family: "Lunasima";
+}
+.card a {
+  color: var(--font);
+  font-family: "Lunasima";
+}
+.card a:hover {
+  color: var(--dark);
+  font-family: "Lunasima";
+}
+.custom-width {
+  width: 250px;
+}
+.dropdown-item:hover {
+  background-color: var(--light);
+  cursor: pointer;
+}
+.dropdown-content {
+  box-shadow: 1px 1px 12px 5px var(--dark);
+}
+.search-button:hover,
+.dropdown button:hover {
+  background-color: var(--light);
+}
