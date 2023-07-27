@@ -54,6 +54,7 @@ function getSpecies_Test() {
 //    page = 1,
 //    previousResponse = []
 
+// Function returns ALL items that match the criteria from the user.
 function getSpecies_paginated_fetch(
     url = APIBaseGetSpeciesUrl, 
     page = 1
@@ -64,8 +65,8 @@ function getSpecies_paginated_fetch(
         if(page===1) 
         {
             // to do reset table body            
-            thead.append(`<tr><th>Id</th><th>Common Name</th><th>Scientific Name</th><th>Cycle</th></tr>`);
-            tbody.append(`<tr><td id="id"></td><td id="common_name"></td><td id="scientific_name"></td></tr><td id="cycle"></td>`);
+            thead.append(`<tr><th>Scientific Name</th><th>Common Name</th><th>Other Name(s)</th><th>Water</th><th>Sunlight</th><th>Cycle</th></tr>`);
+            tbody.append(`<tr><td id="scientific_name"></td><td id="common_name"></td><td id="other_name"></td><td id="watering"></td><td id="sunlight"></td><td id="cycle"></td></tr>`);
             
             // Clear the div that is holding the previous results
         }; 
@@ -76,7 +77,7 @@ function getSpecies_paginated_fetch(
         for(let i=0;newResponse.data.length > i ;i++)
         {
             // paginate results
-            tbody.append("<tr><td>" + newResponse.data[i].id + "</td><td>" + newResponse.data[i].common_name + "</td><td>" + newResponse.data[i].scientific_name + "</td><td>" + newResponse.data[i].cycle + "</td></tr>"); 
+            tbody.append("<tr><td>" + newResponse.data[i].scientific_name + "</td><td>" + newResponse.data[i].common_name + "</td><td>" + newResponse.data[i].other_name + "</td><td>" + newResponse.data[i].watering + "</td><td>" + newResponse.data[i].sunlight + "</td><td>" + newResponse.data[i].cycle + "</td>" + "</tr>"); 
             tbl.append(tbody);
         };   
 
