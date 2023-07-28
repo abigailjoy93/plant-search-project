@@ -3,7 +3,7 @@ var tbl = $("#tbl");
 var thead = $("#thead");
 var tbody = $("#tbody");
 //added inputEl and submitEl
-let inputEl = $('.textarea');
+let inputEl = $(".textarea");
 let submitEl = $(".submit");
 let hardEl = $(".hard");
 let doorEl = $(".door");
@@ -13,198 +13,213 @@ let cycleEl = $(".cycle");
 let edibleEl = $(".edible");
 storage = [];
 
-
 var APIBaseGetSpeciesUrl = "https://perenual.com/api/species-list?";
 // var APIKey = "sk-qIm964bf0f7b09f5f1663"; // Abby's API Key
 // var APIKey = "sk-z8cO64b9d312351e61631"; // Bill's API Key
 let APIKey = "sk-kQ2L64bf0eaf742d61662"; // Michael's API Key
 
-APIBaseGetSpeciesUrl += "key=" + APIKey
+APIBaseGetSpeciesUrl += "key=" + APIKey;
 //added click listener
-submitEl.on('click', function () {
-    //clear out table
-    let bodyEl = $('#tbody')
-    bodyEl.empty();
-    // Use APIBaseURL before concatenating search parameters
-    if (inputEl.val() !== null) {
-        APIBaseGetSpeciesUrl += "&q=" + inputEl.val();
+submitEl.on("click", function () {
+  //clear out table
+  let bodyEl = $("#tbody");
+  bodyEl.empty();
+  // Use APIBaseURL before concatenating search parameters
+  if (inputEl.val() !== null) {
+    APIBaseGetSpeciesUrl += "&q=" + inputEl.val();
+  }
+  //Zone Options - 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+  if (hardEl[0].innerText !== "Hardiness Zone") {
+    APIBaseGetSpeciesUrl += "&hardiness=" + hardEl[0].innerText;
+  }
+  //optional, boolean, default is NULL
+  if (doorEl[0].innerText !== "Indoor/Outdoor") {
+    if (edibleEl[0].innerText == "Indoor") {
+      APIBaseGetSpeciesUrl += "&indoor=" + "1";
+    } else if (edibleEl[0].innerText == "Outdoor") {
+      APIBaseGetSpeciesUrl += "&indoor=" + "0";
     }
-    //Zone Options - 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-    if (hardEl[0].innerText !== "Hardiness Zone") {
-        APIBaseGetSpeciesUrl += "&hardiness=" + hardEl[0].innerText;
+  }
+  //Options - full_shade, part_shade, sun-part_shade, full_sun
+  if (sunEl[0].innerText !== "Sunlight") {
+    APIBaseGetSpeciesUrl += "&sunlight=" + sunEl[0].innerText;
+  }
+  //Options - frequent, average, minimum
+  if (waterEl[0].innerText !== "Water") {
+    APIBaseGetSpeciesUrl += "&watering=" + waterEl[0].innerText;
+  }
+  //Options - perennial, annual, biennial, biannual
+  if (cycleEl[0].innerText !== "Cycle") {
+    APIBaseGetSpeciesUrl += "&cycle=" + cycleEl[0].innerText;
+  }
+  //optional, boolean, default is NULL
+  if (edibleEl[0].innerText !== "Edible") {
+    if (edibleEl[0].innerText == "Yes") {
+      APIBaseGetSpeciesUrl += "&edible=" + "1";
+    } else if (edibleEl[0].innerText == "No") {
+      APIBaseGetSpeciesUrl += "&edible=" + "0";
     }
-    //optional, boolean, default is NULL
-    if (doorEl[0].innerText !== "Indoor/Outdoor") {
-        if (edibleEl[0].innerText == "Indoor") {
-            APIBaseGetSpeciesUrl += "&indoor=" + "1"
-        }
-        else if (edibleEl[0].innerText == "Outdoor") {
-            APIBaseGetSpeciesUrl += "&indoor=" + "0"
-        }        
-    }
-    //Options - full_shade, part_shade, sun-part_shade, full_sun
-    if (sunEl[0].innerText !== "Sunlight") {
-        APIBaseGetSpeciesUrl += "&sunlight=" + sunEl[0].innerText;
-    }
-    //Options - frequent, average, minimum
-    if (waterEl[0].innerText !== "Water") {
-        APIBaseGetSpeciesUrl += "&watering=" + waterEl[0].innerText;
-    }
-    //Options - perennial, annual, biennial, biannual
-    if (cycleEl[0].innerText !== "Cycle") {
-        APIBaseGetSpeciesUrl += "&cycle=" + cycleEl[0].innerText;
-    }
-    //optional, boolean, default is NULL
-    if (edibleEl[0].innerText !== "Edible") {
-        if (edibleEl[0].innerText == "Yes") {
-            APIBaseGetSpeciesUrl += "&edible=" + "1"
-        }
-        else if (edibleEl[0].innerText == "No") {
-            APIBaseGetSpeciesUrl += "&edible=" + "0"
-        }
-    }
+  }
 
-    getSpecies_paginated_fetch();
-})
-
-
-
+  getSpecies_paginated_fetch();
+});
 
 // function returns 1 page of plants
 function getSpecies_Test() {
-    fetch('https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631&page=3',                 // *** No `assignment =` on this line
-        {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-
-            }
-        })
-        .then((response) => {
-            if (response.status == 200) {   // *** This can be just `if (response.ok) {`
-                console.log(response);      // *** This is premature
-                return response.json();
-            }
-            else {
-                throw `error with status ${response.status}`;
-            }
-        })
-        .then(body => {               // *** This is where you want to log the response
-            console.log("*************************");
-            console.log(body);
-            return body;
-        })
-        .catch((exception) => {
-            console.log(exception);
-        });
-};
-
+  fetch(
+    "https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631&page=3", // *** No `assignment =` on this line
+    {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+      },
+    }
+  )
+    .then((response) => {
+      if (response.status == 200) {
+        // *** This can be just `if (response.ok) {`
+        console.log(response); // *** This is premature
+        return response.json();
+      } else {
+        throw `error with status ${response.status}`;
+      }
+    })
+    .then((body) => {
+      // *** This is where you want to log the response
+      console.log("*************************");
+      console.log(body);
+      return body;
+    })
+    .catch((exception) => {
+      console.log(exception);
+    });
+}
 
 // cite: https://observablehq.com/@xari/paginated_fetch
 //   for providing an example of how to iterate multiple
 //   pages of results from an API call
 
 // ToDo: Add search parameters i.e. Sun, Water, Cycle, etc.
-//          to url 
-// url = 'https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631', 
+//          to url
+// url = 'https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631',
 //    page = 1,
 //    previousResponse = []
 
 // Function returns ALL items that match the criteria from the user.
-function getSpecies_paginated_fetch(
-    url = APIBaseGetSpeciesUrl,
-    page = 1
-) {
-    return fetch(`${url}&page=${page}`) // Append the page number to the base URL
-        .then(response => response.json())
-        .then(newResponse => {
-            // if(page===1) 
-            // {
-            //     // to do reset table body            
-            //     thead.append(`<tr><th>Scientific Name</th><th>Common Name</th><th>Other Name(s)</th><th>Water</th><th>Sunlight</th><th>Cycle</th></tr>`);
-            //     tbody.append(`<tr><td id="scientific_name"></td><td id="common_name"></td><td id="other_name"></td><td id="watering"></td><td id="sunlight"></td><td id="cycle"></td></tr>`);
+function getSpecies_paginated_fetch(url = APIBaseGetSpeciesUrl, page = 1) {
+  return fetch(`${url}&page=${page}`) // Append the page number to the base URL
+    .then((response) => response.json())
+    .then((newResponse) => {
+      // if(page===1)
+      // {
+      //     // to do reset table body
+      //     thead.append(`<tr><th>Scientific Name</th><th>Common Name</th><th>Other Name(s)</th><th>Water</th><th>Sunlight</th><th>Cycle</th></tr>`);
+      //     tbody.append(`<tr><td id="scientific_name"></td><td id="common_name"></td><td id="other_name"></td><td id="watering"></td><td id="sunlight"></td><td id="cycle"></td></tr>`);
 
-            //     // Clear the div that is holding the previous results
-            // }; 
+      //     // Clear the div that is holding the previous results
+      // };
 
+      // This is where we'll write to the webpage
 
-            // This is where we'll write to the webpage
-
-            for (let i = 0; newResponse.data.length > i; i++) {
-                // paginate results
-                //   console.log(newResponse.data[i].id)    
-                tbody.append("<tr><td>" + newResponse.data[i].scientific_name + "</td><td>" + newResponse.data[i].common_name + "</td><td>" + newResponse.data[i].other_name + "</td><td>" + newResponse.data[i].watering + "</td><td>" + newResponse.data[i].sunlight + "</td><td>" + newResponse.data[i].cycle + "</td><td><div class='savebutton' id='" + newResponse.data[i].id + "'>save</div></tr>");
-                tbl.append(tbody);
-                //click listener for save buttons
-                $('#' + newResponse.data[i].id).on('click', function () {
-                    savedItem = $(this)
-                    if (storage !== null) {
-
-                        storage.push(savedItem.attr('id'));
-                        localStorage.setItem('storedId', JSON.stringify(storage))
-                        console.log(JSON.parse(localStorage.getItem('storedId')))
-                    } else {
-                        storage = [savedItem.attr('id')]
-                        localStorage.setItem('storedId', JSON.stringify(storage))
-                    }
-                    render();
-                })
-                
-            };
-
-            // todo: remove governor on pages when
-            // done testing. remove last && page < ???
-            if (page <= newResponse.last_page && page < 4) {
-                page++;
-                // Making a recursive call to append results from all pages  
-                return getSpecies_paginated_fetch(url, page);
-            }
+      for (let i = 0; newResponse.data.length > i; i++) {
+        // paginate results
+        //   console.log(newResponse.data[i].id)
+        tbody.append(
+          "<tr><td>" +
+            newResponse.data[i].scientific_name +
+            "</td><td>" +
+            newResponse.data[i].common_name +
+            "</td><td>" +
+            newResponse.data[i].other_name +
+            "</td><td>" +
+            newResponse.data[i].watering +
+            "</td><td>" +
+            newResponse.data[i].sunlight +
+            "</td><td>" +
+            newResponse.data[i].cycle +
+            "</td><td><button class='savebutton' id='" +
+            newResponse.data[i].id +
+            "'>save</button></tr>"
+        );
+        tbl.append(tbody);
+        //click listener for save buttons
+        $("#" + newResponse.data[i].id).on("click", function () {
+          savedItem = $(this);
+          if (storage !== null) {
+            storage.push(savedItem.attr("id"));
+            localStorage.setItem("storedId", JSON.stringify(storage));
+            console.log(JSON.parse(localStorage.getItem("storedId")));
+          } else {
+            storage = [savedItem.attr("id")];
+            localStorage.setItem("storedId", JSON.stringify(storage));
+          }
+          render();
         });
-};
+      }
+
+      // todo: remove governor on pages when
+      // done testing. remove last && page < ???
+      if (page <= newResponse.last_page && page < 4) {
+        page++;
+        // Making a recursive call to append results from all pages
+        return getSpecies_paginated_fetch(url, page);
+      }
+    });
+}
 
 // const getSpeciesResponse = getSpecies_paginated_fetch();
 // getSpecies_Test()// const getSpeciesResponse = getSpecies_Test2();
 
-
-
-
-
-
 //render function puts IDs in "my plants"
 function render() {
-    if (JSON.parse(localStorage.getItem('storedId')) !== null) {
-        storage = JSON.parse(localStorage.getItem('storedId'));
+  if (JSON.parse(localStorage.getItem("storedId")) !== null) {
+    storage = JSON.parse(localStorage.getItem("storedId"));
 
-        for (let i = 0; i < storage.length; i++) {
-            let favEl = $('<p>')
-            let linkEl = $('<a>')
-            linkEl.attr('id', 'plant' + i)
-            // linkEl.attr('onclick','getPlantbyid_fetch()')
-            $('.card-content').append(favEl)
-            favEl.append(linkEl)
-            $('#plant' + i).text(JSON.parse(localStorage.getItem('storedId'))[i])
-
-        }
-
-    } else {
-        storage = [];
+    for (let i = 0; i < storage.length; i++) {
+      let favEl = $("<p>");
+      let linkEl = $("<a>");
+      linkEl.attr("id", "plant" + i);
+      // linkEl.attr('onclick','getPlantbyid_fetch()')
+      $(".card-content").append(favEl);
+      favEl.append(linkEl);
+      $("#plant" + i).text(JSON.parse(localStorage.getItem("storedId"))[i]);
     }
+  } else {
+    storage = [];
+  }
 }
 //call render function on page load
-render()
+render();
 
-$('[id^=plant]').on("click", function(){
-    let plantId = $(this)[0].innerText
-    return fetch(`https://perenual.com/api/species/details/${plantId}?key=${APIKey}`)
+$("[id^=plant]").on("click", function () {
+  let plantId = $(this)[0].innerText;
+  return fetch(
+    `https://perenual.com/api/species/details/${plantId}?key=${APIKey}`
+  )
     .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        tbody.empty();
-        tbody.append("<tr><td>" + data.scientific_name + "</td><td>" + data.common_name + "</td><td>" + data.other_name + "</td><td>" + data.watering + "</td><td>" + data.sunlight + "</td><td>" + data.cycle + "</td><td><div class='savebutton' id='" + data.id + "'>save</div></tr>");
-        tbl.append(tbody);
-    console.log(data);
-   
+      return response.json();
     })
-})
+    .then(function (data) {
+      tbody.empty();
+      tbody.append(
+        "<tr><td>" +
+          data.scientific_name +
+          "</td><td>" +
+          data.common_name +
+          "</td><td>" +
+          data.other_name +
+          "</td><td>" +
+          data.watering +
+          "</td><td>" +
+          data.sunlight +
+          "</td><td>" +
+          data.cycle +
+          "</td><td><div class='savebutton' id='" +
+          data.id +
+          "'>save</div></tr>"
+      );
+      tbl.append(tbody);
+      console.log(data);
+    });
+});
