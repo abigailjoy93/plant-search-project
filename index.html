@@ -40,32 +40,37 @@
             </div>
           </div>
           <div class="card-content">
-            <p>
+<!-- this is now dynamic: delete -->
+            <!-- <p>
               <a
+                id = 'plant1'
                 href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
                 >Plant 1</a
               >
             </p>
             <p>
               <a
+              id = 'plant2'
                 href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
                 >Plant 2</a
               >
             </p>
             <p>
               <a
+              id = 'plant3'
                 href="https://perenual.com/marketplace/product/sku-lDZy64156ab1ebec11"
                 >Plant 3</a
               >
-            </p>
+            </p> -->
           </div>
         </div>
 
         <div class="buttons is-centered">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add hard class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font hard"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -78,13 +83,40 @@
             <div class="dropdown-menu" id="dropdown-menu5" role="menu">
               <div class="dropdown-content custom-width custom-font">
                 <div class="dropdown-item custom-font">
-                  <p>Zone 1</p>
+                  <p>1</p>
                 </div>
                 <div class="dropdown-item custom-font">
-                  <p>Zone 2</p>
+                  <p>2</p>
                 </div>
                 <div class="dropdown-item custom-font">
-                  <p>Zone 3</p>
+                  <p>3</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>4</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>5</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>6</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>7</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>8</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>9</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>10</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>11</p>
+                </div>
+                <div class="dropdown-item custom-font">
+                  <p>12</p>
                 </div>
               </div>
             </div>
@@ -94,8 +126,9 @@
         <div class="buttons is-centered">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add door class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font door"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -121,8 +154,9 @@
         <div class="buttons is-centered is-half">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add sun class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font sun"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -154,8 +188,9 @@
         <div class="buttons is-centered">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add cycle class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font water"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -173,6 +208,9 @@
                 <div class="dropdown-item custom-font">
                   <p>Frequent</p>
                 </div>
+                <div class="dropdown-item custom-font">
+                  <p>minimum</p>
+                </div>
               </div>
             </div>
           </div>
@@ -181,8 +219,9 @@
         <div class="buttons is-centered">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add cycle class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font cycle"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -208,8 +247,9 @@
         <div class="buttons is-centered">
           <div class="dropdown">
             <div class="dropdown-trigger">
+              <!-- add edible class -->
               <button
-                class="button is-outlined is-rounded custom-width custom-font"
+                class="button is-outlined is-rounded custom-width custom-font edible"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu5"
               >
@@ -240,7 +280,8 @@
           ></textarea>
         </div>
         <br />
-        <div class="buttons is-centered">
+        <!-- added class "submit" -->
+        <div class="buttons is-centered submit">
           <button class="button is-outlined search-button">Search</button>
         </div>
       </div>
@@ -250,11 +291,13 @@
           <table class="table" id="tbl">
             <thead id="thead">
               <tr>
-                <th></th>
+                
                 <th>Scientific Name</th>
                 <th>Common Name</th>
+                <th>Other Name(s)</th>
                 <th>Watering Preferences</th>
                 <th>Sunlight Preferences</th>
+                <th>Cycle</th>
                 <th>Add to My Plant</th>
               </tr>
             </thead>
@@ -269,7 +312,7 @@
     <script
       defer
       type="text/javascript"
-      src="assets/js/perenualAPI.js"
+      src="assets/js/perenualML.js"
     ></script>
     <script defer type="text/javascript" src="assets/js/script.js"></script>
   </body>
