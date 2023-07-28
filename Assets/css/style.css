@@ -10,7 +10,16 @@
   padding: 15px;
   text-align: center;
   background-color: var(--main);
+  font-weight: bolder;
 }
+#srchclr {
+  color: green;
+}
+.subtitle li {
+  display: inline-block;
+  font-weight: bold;
+}
+
 .column {
   margin: 25px;
   border: 3.5px solid var(--dark);
