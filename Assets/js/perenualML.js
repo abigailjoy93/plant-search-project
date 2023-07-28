@@ -191,6 +191,41 @@ function render() {
             $(".card-content").append(favEl);
             favEl.append(linkEl);
             $("#plant" + i).text(JSON.parse(localStorage.getItem("storedName"))[i]);
+
+
+            linkEl.on("click", function () {
+
+                let plantId = $(this).attr('name');
+                return fetch(
+                    `https://perenual.com/api/species/details/${plantId}?key=${APIKey}`
+                )
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                            tbody.empty();
+                        tbody.append(
+                            "<tr><td>" +
+                            data.scientific_name +
+                            "</td><td>" +
+                            data.common_name +
+                            "</td><td>" +
+                            data.other_name +
+                            "</td><td>" +
+                            data.watering +
+                            "</td><td>" +
+                            data.sunlight +
+                            "</td><td>" +
+                            data.cycle +
+                            "</td><td><button class='savebutton clearbutton' id='" +
+                            data.id +
+                            "'>clear</button></tr>"
+                        );
+                        tbl.append(tbody);
+                        console.log(data);
+                    });
+            });
+
         }
     } else {
         storage = [];
@@ -200,35 +235,3 @@ function render() {
 //call render function on page load
 render();
 
-$("[id^=plant]").on("click", function () {
-
-    let plantId = $(this).attr('name');
-    return fetch(
-        `https://perenual.com/api/species/details/${plantId}?key=${APIKey}`
-    )
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-                tbody.empty();
-            tbody.append(
-                "<tr><td>" +
-                data.scientific_name +
-                "</td><td>" +
-                data.common_name +
-                "</td><td>" +
-                data.other_name +
-                "</td><td>" +
-                data.watering +
-                "</td><td>" +
-                data.sunlight +
-                "</td><td>" +
-                data.cycle +
-                "</td><td><button class='savebutton clearbutton' id='" +
-                data.id +
-                "'>clear</button></tr>"
-            );
-            tbl.append(tbody);
-            console.log(data);
-        });
-});
