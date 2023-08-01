@@ -15,8 +15,8 @@ storage = [];
 nstorage = [];
 var APIBaseGetSpeciesUrl = "https://perenual.com/api/species-list?";
 // var APIKey = "sk-qIm964bf0f7b09f5f1663"; // Abby's API Key
-var APIKey = "sk-z8cO64b9d312351e61631"; // Bill's API Key
-// let APIKey = "sk-kQ2L64bf0eaf742d61662"; // Michael's API Key
+// var APIKey = "sk-z8cO64b9d312351e61631"; // Bill's API Key
+let APIKey = "sk-kQ2L64bf0eaf742d61662"; // Michael's API Key
 
 APIBaseGetSpeciesUrl += "key=" + APIKey;
 //added click listener
@@ -210,7 +210,7 @@ function render() {
               "</td><td>" +
                       data.cycle +
               "</td><td><button class='savebutton clearbutton' id='" + data.id + "' name='" +
-                      data.common_name + "'>save</button></tr>";
+                      data.common_name + "'>clear</button></tr>";
             } catch (error) {
                 console.log(error);
             };
