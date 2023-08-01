@@ -186,7 +186,7 @@ function render() {
             try
             {
               // The first field we're appending is a thumbnail image if it is available
-              if (newResponse.data[i].default_image['thumbnail'] == null) 
+              if (data.default_image['thumbnail'] == null) 
               {
                   tblVal = "<tr><td>" +
                           "Image Unavailable" + "</td>" 
@@ -194,7 +194,7 @@ function render() {
               else
               {
                   tblVal = "<tr><td>" +
-                          "<a> <img src=\"" + newResponse.data[i].default_image['thumbnail'] + "\" border=1></a>" +
+                          "<a> <img src=\"" + data.default_image['thumbnail'] + "\" border=1></a>" +
                           "</td>" 
               } 
               tblVal = tblVal +
