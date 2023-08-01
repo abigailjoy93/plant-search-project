@@ -191,8 +191,10 @@ function render() {
             // linkEl.attr('onclick','getPlantbyid_fetch()')
             $(".card-content").append(favEl);
             favEl.append(linkEl);
-            $("#plant" + i).text(JSON.parse(localStorage.getItem("storedName"))[i]);
 
+            if (nstorage !== null && nstorage.length > 0){
+            $("#plant" + i).text(JSON.parse(localStorage.getItem("storedName"))[i]);
+            }
 
             linkEl.on("click", function () {
 
