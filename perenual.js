@@ -268,3 +268,38 @@ function render() {
 }
 //call render function on page load
 render();
+
+
+//this will trigger the modal
+const modalEl = document.querySelector(".modal-element");
+
+document.addEventListener("click", function (event) {
+  const target = event.target;
+  // if the modal button is clicked, then open the modal
+  if (target.classList.contains("modal-button")) {
+    
+    openModal();
+  }
+  // if the submit or close buttons are clicked, then close the modal
+  else if (
+    target.classList.contains("submit-button") ||
+    target.classList.contains("modal-close")
+  ) {
+    let zipcodeEl = $('.zipcode')
+    getHardinessfromzip(zipcodeEl.val());
+    closeModal();
+  }
+  // if a user clicks outside of the modal, then close the modal
+  if (target.classList.contains("modal-background")) {
+    closeModal();
+  }
+});
+
+function openModal() {
+  const modalContainer = document.querySelector(".modal");
+  modalContainer.classList.add("is-active");
+}
+function closeModal() {
+  modalEl.classList.remove("is-active");
+}
+
