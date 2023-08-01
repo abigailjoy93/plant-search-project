@@ -18,6 +18,6 @@
 
 # Abigail Peloquin, Email:abigail.turnwall@gmail.com, Github: abigailjoy93
 
-# Bill Gayk, Email:Gayk.william@gamil.com, Github: bgayk
+# Bill Gayk, Email:gayk.william@gmail.com, Github: bgayk
 
 # Micheal Lee, Email:leex3683@umn.edu, Github: leex3683
