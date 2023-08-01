@@ -186,6 +186,7 @@ function render() {
             let favEl = $("<p>");
             let linkEl = $("<a>");
             linkEl.attr("id", "plant" + i);
+            linkEl.attr("data-id", i);
             linkEl.attr('name', storage[i]);
             // linkEl.attr('onclick','getPlantbyid_fetch()')
             $(".card-content").append(favEl);
@@ -203,7 +204,7 @@ function render() {
                         return response.json();
                     })
                     .then(function (data) {
-                            tbody.empty();
+                        tbody.empty();
                         tbody.append(
                             "<tr><td>" +
                             data.scientific_name +
@@ -223,6 +224,22 @@ function render() {
                         );
                         tbl.append(tbody);
                         console.log(data);
+                        let clearEl = $(".clearbutton")
+                        //clear click listener
+                        clearEl.on('click', function () {
+                            let clear = $(this);
+                            //find the array index that matches the plant's id
+                            indexclear = storage.findIndex(getindex)
+                            function getindex(x) {
+                                console.log(clearEl.attr('id'))
+                                return x == clearEl.attr('id')
+                            }
+                            storage.splice(indexclear,1);
+                            nstorage.splice(indexclear,1);
+                            localStorage.setItem("storedId", JSON.stringify(storage));
+                            localStorage.setItem("storedName", JSON.stringify(nstorage));
+                            $("#plant" + i).remove();
+                        })
                     });
             });
 
