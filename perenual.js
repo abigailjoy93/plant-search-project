@@ -15,8 +15,8 @@ storage = [];
 nstorage = [];
 var APIBaseGetSpeciesUrl = "https://perenual.com/api/species-list?";
 // var APIKey = "sk-qIm964bf0f7b09f5f1663"; // Abby's API Key
-var APIKey = "sk-z8cO64b9d312351e61631"; // Bill's API Key
-// let APIKey = "sk-kQ2L64bf0eaf742d61662"; // Michael's API Key
+// var APIKey = "sk-z8cO64b9d312351e61631"; // Bill's API Key
+let APIKey = "sk-kQ2L64bf0eaf742d61662"; // Michael's API Key
 
 APIBaseGetSpeciesUrl += "key=" + APIKey;
 //added click listener
@@ -194,25 +194,26 @@ function render() {
                   '" border=1></a>' +
                   "</td>";
               }
-              tblVal =
-                tblVal +
-                "<td>" +
-                data.scientific_name +
-                "</td><td>" +
-                data.common_name +
-                "</td><td>" +
-                data.other_name +
-                "</td><td>" +
-                data.watering +
-                "</td><td>" +
-                data.sunlight +
-                "</td><td>" +
-                data.cycle +
-                "</td><td><button class='savebutton clearbutton' id='" +
-                data.id +
-                "' name='" +
-                data.common_name +
-                "'>save</button></tr>";
+              else
+              {
+                  tblVal = "<tr><td>" +
+                          "<a> <img src=\"" + data.default_image['thumbnail'] + "\" border=1></a>" +
+                          "</td>" 
+              } 
+              tblVal = tblVal +
+              "<td>" + data.scientific_name +
+              "</td><td>" +
+                      data.common_name +
+              "</td><td>" +
+                      data.other_name +
+              "</td><td>" +
+                      data.watering +
+              "</td><td>" +
+                      data.sunlight +
+              "</td><td>" +
+                      data.cycle +
+              "</td><td><button class='savebutton clearbutton' id='" + data.id + "' name='" +
+                      data.common_name + "'>clear</button></tr>";
             } catch (error) {
               console.log(error);
             }
@@ -270,3 +271,38 @@ function render() {
 }
 //call render function on page load
 render();
+
+
+//this will trigger the modal
+const modalEl = document.querySelector(".modal-element");
+
+document.addEventListener("click", function (event) {
+  const target = event.target;
+  // if the modal button is clicked, then open the modal
+  if (target.classList.contains("modal-button")) {
+    
+    openModal();
+  }
+  // if the submit or close buttons are clicked, then close the modal
+  else if (
+    target.classList.contains("submit-button") ||
+    target.classList.contains("modal-close")
+  ) {
+    let zipcodeEl = $('.zipcode')
+    getHardinessfromzip(zipcodeEl.val());
+    closeModal();
+  }
+  // if a user clicks outside of the modal, then close the modal
+  if (target.classList.contains("modal-background")) {
+    closeModal();
+  }
+});
+
+function openModal() {
+  const modalContainer = document.querySelector(".modal");
+  modalContainer.classList.add("is-active");
+}
+function closeModal() {
+  modalEl.classList.remove("is-active");
+}
+
