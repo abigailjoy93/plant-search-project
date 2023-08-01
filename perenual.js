@@ -64,90 +64,59 @@ submitEl.on("click", function () {
   getSpecies_paginated_fetch();
 });
 
-// function returns 1 page of plants
-function getSpecies_Test() {
-  fetch(
-    "https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631&page=3", // *** No `assignment =` on this line
-    {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-      },
-    }
-  )
-    .then((response) => {
-      if (response.status == 200) {
-        // *** This can be just `if (response.ok) {`
-        console.log(response); // *** This is premature
-        return response.json();
-      } else {
-        throw `error with status ${response.status}`;
-      }
-    })
-    .then((body) => {
-      // *** This is where you want to log the response
-      console.log("*************************");
-      console.log(body);
-      return body;
-    })
-    .catch((exception) => {
-      console.log(exception);
-    });
-}
-
-// cite: https://observablehq.com/@xari/paginated_fetch
-//   for providing an example of how to iterate multiple
-//   pages of results from an API call
-
-// ToDo: Add search parameters i.e. Sun, Water, Cycle, etc.
-//          to url
-// url = 'https://perenual.com/api/species-list?key=sk-z8cO64b9d312351e61631',
-//    page = 1,
-//    previousResponse = []
-
 // Function returns ALL items that match the criteria from the user.
 function getSpecies_paginated_fetch(url = APIBaseGetSpeciesUrl, page = 1) {
   return fetch(`${url}&page=${page}`) // Append the page number to the base URL
     .then((response) => response.json())
     .then((newResponse) => {
-      // if(page===1)
-      // {
-      //     // to do reset table body
-      //     thead.append(`<tr><th>Scientific Name</th><th>Common Name</th><th>Other Name(s)</th><th>Water</th><th>Sunlight</th><th>Cycle</th></tr>`);
-      //     tbody.append(`<tr><td id="scientific_name"></td><td id="common_name"></td><td id="other_name"></td><td id="watering"></td><td id="sunlight"></td><td id="cycle"></td></tr>`);
-
-      //     // Clear the div that is holding the previous results
-      // };
-
       // This is where we'll write to the webpage
 
       for (let i = 0; newResponse.data.length > i; i++) {
         // paginate results
-        //   console.log(newResponse.data[i].id)
         if (
           newResponse.data[i].watering !==
           "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry"
         ) {
-          tbody.append(
-            "<tr><td>" +
-              newResponse.data[i].scientific_name +
-              "</td><td>" +
-              newResponse.data[i].common_name +
-              "</td><td>" +
-              newResponse.data[i].other_name +
-              "</td><td>" +
-              newResponse.data[i].watering +
-              "</td><td>" +
-              newResponse.data[i].sunlight +
-              "</td><td>" +
-              newResponse.data[i].cycle +
-              "</td><td><button class='savebutton' id='" +
-              newResponse.data[i].id +
-              "' name='" +
-              newResponse.data[i].common_name +
-              "'>save</button></tr>"
-          );
+          try 
+          {
+            // The first field we're appending is a thumbnail image if it is available
+            if (newResponse.data[i].default_image['thumbnail'] == null) 
+            {
+                tblVal = "<tr><td>" +
+                         "Image Unavailable" + "</td>" 
+            }
+            else
+            {
+                tblVal = "<tr><td>" +
+                         "<a> <img src=\"" + newResponse.data[i].default_image['thumbnail'] + "\" border=1></a>" +
+                         "</td>" 
+            } 
+            tblVal = tblVal +
+            "<td>" + newResponse.data[i].scientific_name +
+            "</td><td>" +
+            newResponse.data[i].common_name +
+            "</td><td>" +
+            newResponse.data[i].other_name +
+            "</td><td>" +
+            newResponse.data[i].watering +
+            "</td><td>" +
+            newResponse.data[i].sunlight +
+            "</td><td>" +
+            newResponse.data[i].cycle +
+            "</td><td><button class='savebutton' id='" +
+            newResponse.data[i].id +
+            "' name='" +
+            newResponse.data[i].common_name +
+            "'>save</button></tr>";
+          } catch (error) {
+              console.log(error);
+          };
+
+          try {
+            tbody.append(tblVal);
+          } catch (error) {
+            console.log(error);
+          };
         }
         tbl.append(tbody);
 
@@ -210,27 +179,66 @@ function render() {
           .then(function (response) {
             return response.json();
           })
-          .then(function (data) {
+          .then(function (data) 
+          {
             tbody.empty();
-            tbody.append(
-              "<tr><td>" +
-                data.scientific_name +
-                "</td><td>" +
-                data.common_name +
-                "</td><td>" +
-                data.other_name +
-                "</td><td>" +
-                data.watering +
-                "</td><td>" +
-                data.sunlight +
-                "</td><td>" +
-                data.cycle +
-                "</td><td><button class='savebutton clearbutton' id='" +
-                data.id +
-                "'>clear</button></tr>"
-            );
-            tbl.append(tbody);
-            console.log(data);
+            var tblVal = "";
+            try
+            {
+              // The first field we're appending is a thumbnail image if it is available
+              if (newResponse.data[i].default_image['thumbnail'] == null) 
+              {
+                  tblVal = "<tr><td>" +
+                          "Image Unavailable" + "</td>" 
+              }
+              else
+              {
+                  tblVal = "<tr><td>" +
+                          "<a> <img src=\"" + newResponse.data[i].default_image['thumbnail'] + "\" border=1></a>" +
+                          "</td>" 
+              } 
+              tblVal = tblVal +
+              "<td>" + data.scientific_name +
+              "</td><td>" +
+                      data.common_name +
+              "</td><td>" +
+                      data.other_name +
+              "</td><td>" +
+                      data.watering +
+              "</td><td>" +
+                      data.sunlight +
+              "</td><td>" +
+                      data.cycle +
+              "</td><td><button class='savebutton clearbutton' id='" + data.id + "' name='" +
+                      data.common_name + "'>save</button></tr>";
+            } catch (error) {
+                console.log(error);
+            };
+
+            try {
+              tbody.append(tblVal);
+            } catch (error) {
+              console.log(error);
+            };
+          //  tbody.append(
+          //    "<tr><td>" +
+          //      data.scientific_name +
+          //      "</td><td>" +
+          //      data.common_name +
+          //      "</td><td>" +
+          //      data.other_name +
+          //      "</td><td>" +
+          //      data.watering +
+          //      "</td><td>" +
+          //      data.sunlight +
+          //      "</td><td>" +
+          //      data.cycle +
+          //      "</td><td><button class='savebutton clearbutton' id='" +
+          //      data.id +
+          //      "'>clear</button></tr>"
+          //  );
+          //  tbl.append(tbody);
+          //  console.log(data);
             let clearEl = $(".clearbutton");
             //clear click listener
             clearEl.on("click", function () {
