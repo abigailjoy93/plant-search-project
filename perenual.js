@@ -126,48 +126,29 @@ function getSpecies_paginated_fetch(url = APIBaseGetSpeciesUrl, page = 1) {
         // paginate results
         //   console.log(newResponse.data[i].id)
         if (
-          newResponse.data[i].watering ==
+          newResponse.data[i].watering !==
           "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry"
         ) {
-          var watering1 = "N/A";
-        } else {
-          watering1 = newResponse.data[i].watering;
+          tbody.append(
+            "<tr><td>" +
+              newResponse.data[i].scientific_name +
+              "</td><td>" +
+              newResponse.data[i].common_name +
+              "</td><td>" +
+              newResponse.data[i].other_name +
+              "</td><td>" +
+              newResponse.data[i].watering +
+              "</td><td>" +
+              newResponse.data[i].sunlight +
+              "</td><td>" +
+              newResponse.data[i].cycle +
+              "</td><td><button class='savebutton' id='" +
+              newResponse.data[i].id +
+              "' name='" +
+              newResponse.data[i].common_name +
+              "'>save</button></tr>"
+          );
         }
-        if (
-          newResponse.data[i].sunlight ==
-          "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry"
-        ) {
-          var sunlight1 = "N/A";
-        } else {
-          sunlight1 = newResponse.data[i].sunlight;
-        }
-        if (
-          newResponse.data[i].cycle ==
-          "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry"
-        ) {
-          var cycle1 = "N/A";
-        } else {
-          cycle1 = newResponse.data[i].cycle;
-        }
-        tbody.append(
-          "<tr><td>" +
-            newResponse.data[i].scientific_name +
-            "</td><td>" +
-            newResponse.data[i].common_name +
-            "</td><td>" +
-            newResponse.data[i].other_name +
-            "</td><td>" +
-            watering1 +
-            "</td><td>" +
-            sunlight1 +
-            "</td><td>" +
-            cycle1 +
-            "</td><td><button class='savebutton' id='" +
-            newResponse.data[i].id +
-            "' name='" +
-            newResponse.data[i].common_name +
-            "'>save</button></tr>"
-        );
         tbl.append(tbody);
 
         //click listener for save buttons
