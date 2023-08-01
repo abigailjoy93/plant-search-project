@@ -77,46 +77,46 @@ function getSpecies_paginated_fetch(url = APIBaseGetSpeciesUrl, page = 1) {
           newResponse.data[i].watering !==
           "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry"
         ) {
-          try 
-          {
+          try {
             // The first field we're appending is a thumbnail image if it is available
-            if (newResponse.data[i].default_image['thumbnail'] == null) 
-            {
-                tblVal = "<tr><td>" +
-                         "Image Unavailable" + "</td>" 
+            if (newResponse.data[i].default_image["thumbnail"] == null) {
+              tblVal = "<tr><td>" + "Image Unavailable" + "</td>";
+            } else {
+              tblVal =
+                "<tr><td>" +
+                '<a> <img src="' +
+                newResponse.data[i].default_image["thumbnail"] +
+                '" border=1></a>' +
+                "</td>";
             }
-            else
-            {
-                tblVal = "<tr><td>" +
-                         "<a> <img src=\"" + newResponse.data[i].default_image['thumbnail'] + "\" border=1></a>" +
-                         "</td>" 
-            } 
-            tblVal = tblVal +
-            "<td>" + newResponse.data[i].scientific_name +
-            "</td><td>" +
-            newResponse.data[i].common_name +
-            "</td><td>" +
-            newResponse.data[i].other_name +
-            "</td><td>" +
-            newResponse.data[i].watering +
-            "</td><td>" +
-            newResponse.data[i].sunlight +
-            "</td><td>" +
-            newResponse.data[i].cycle +
-            "</td><td><button class='savebutton' id='" +
-            newResponse.data[i].id +
-            "' name='" +
-            newResponse.data[i].common_name +
-            "'>save</button></tr>";
+            tblVal =
+              tblVal +
+              "<td>" +
+              newResponse.data[i].scientific_name +
+              "</td><td>" +
+              newResponse.data[i].common_name +
+              "</td><td>" +
+              newResponse.data[i].other_name +
+              "</td><td>" +
+              newResponse.data[i].watering +
+              "</td><td>" +
+              newResponse.data[i].sunlight +
+              "</td><td>" +
+              newResponse.data[i].cycle +
+              "</td><td><button class='savebutton' id='" +
+              newResponse.data[i].id +
+              "' name='" +
+              newResponse.data[i].common_name +
+              "'>save</button></tr>";
           } catch (error) {
-              console.log(error);
-          };
+            console.log(error);
+          }
 
           try {
             tbody.append(tblVal);
           } catch (error) {
             console.log(error);
-          };
+          }
         }
         tbl.append(tbody);
 
@@ -179,17 +179,20 @@ function render() {
           .then(function (response) {
             return response.json();
           })
-          .then(function (data) 
-          {
+          .then(function (data) {
             tbody.empty();
             var tblVal = "";
-            try
-            {
+            try {
               // The first field we're appending is a thumbnail image if it is available
-              if (data.default_image['thumbnail'] == null) 
-              {
-                  tblVal = "<tr><td>" +
-                          "Image Unavailable" + "</td>" 
+              if (data.default_image["thumbnail"] == null) {
+                tblVal = "<tr><td>" + "Image Unavailable" + "</td>";
+              } else {
+                tblVal =
+                  "<tr><td>" +
+                  '<a> <img src="' +
+                  data.default_image["thumbnail"] +
+                  '" border=1></a>' +
+                  "</td>";
               }
               else
               {
@@ -212,33 +215,33 @@ function render() {
               "</td><td><button class='savebutton clearbutton' id='" + data.id + "' name='" +
                       data.common_name + "'>clear</button></tr>";
             } catch (error) {
-                console.log(error);
-            };
+              console.log(error);
+            }
 
             try {
               tbody.append(tblVal);
             } catch (error) {
               console.log(error);
-            };
-          //  tbody.append(
-          //    "<tr><td>" +
-          //      data.scientific_name +
-          //      "</td><td>" +
-          //      data.common_name +
-          //      "</td><td>" +
-          //      data.other_name +
-          //      "</td><td>" +
-          //      data.watering +
-          //      "</td><td>" +
-          //      data.sunlight +
-          //      "</td><td>" +
-          //      data.cycle +
-          //      "</td><td><button class='savebutton clearbutton' id='" +
-          //      data.id +
-          //      "'>clear</button></tr>"
-          //  );
-          //  tbl.append(tbody);
-          //  console.log(data);
+            }
+            //  tbody.append(
+            //    "<tr><td>" +
+            //      data.scientific_name +
+            //      "</td><td>" +
+            //      data.common_name +
+            //      "</td><td>" +
+            //      data.other_name +
+            //      "</td><td>" +
+            //      data.watering +
+            //      "</td><td>" +
+            //      data.sunlight +
+            //      "</td><td>" +
+            //      data.cycle +
+            //      "</td><td><button class='savebutton clearbutton' id='" +
+            //      data.id +
+            //      "'>clear</button></tr>"
+            //  );
+            //  tbl.append(tbody);
+            //  console.log(data);
             let clearEl = $(".clearbutton");
             //clear click listener
             clearEl.on("click", function () {
