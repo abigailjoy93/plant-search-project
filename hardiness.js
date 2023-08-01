@@ -1,5 +1,5 @@
 
-// let IPAPIKey = '974931d7e1mshf4ff7c164ce0734p13e74cjsn7fbb18de9321'
+let IPAPIKey = '974931d7e1mshf4ff7c164ce0734p13e74cjsn7fbb18de9321'
 
 //fetch user IP
 // fetch('https://api.techniknews.net/ip/')
